@@ -1,5 +1,9 @@
 package com.string;
 
+import com.array.ArraysMethod;
+
+import java.lang.reflect.Method;
+
 /**
  * Created by Sean on 2018/4/13.
  */
@@ -57,7 +61,8 @@ public class StringMethod {
 
 //        valueOf(char c)  类型转换  各种类型的数据
         str1 = String.valueOf(chars);
-
+        Class c= ArraysMethod.class;
+        Method[] methods=c.getMethods();
 
         /**
          * StringBuffer

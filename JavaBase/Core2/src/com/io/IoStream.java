@@ -13,7 +13,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * Created by Sean on 2018/5/25.
  */
-public class Input {
+public class IoStream {
     public static void readFileByStream(String fileName) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(fileName);
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
@@ -105,7 +105,7 @@ public class Input {
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 //        Demo[] demos={new Demo("sean","14"),new Demo("master","22")};
-//        Input.writeObjectFile("D:\\object.dat",demos);
+//        IoStream.writeObjectFile("D:\\object.dat",demos);
         Path path= Paths.get("D:","work");
         String str=path.toString();
         System.out.println(str);

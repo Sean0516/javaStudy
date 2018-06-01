@@ -1,5 +1,6 @@
 package com.io;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
@@ -13,6 +14,7 @@ import java.util.List;
 public class FileOpreate {
 //    Files 类的使用;
 public static void main(String[] args) throws IOException {
+
 //    读文件
     Path path= Paths.get("D:\\kafka.yml");
 //    将文件转化为字节数组
@@ -35,6 +37,7 @@ public static void main(String[] args) throws IOException {
 //    复制文件
     Path path1=Paths.get("D:\\kafka2.yml");
     Files.copy(path,path1);
+    Files.copy(path,path1,StandardCopyOption.REPLACE_EXISTING);
 //    移动文件
     Files.move(path,path1);
 //     删除文件

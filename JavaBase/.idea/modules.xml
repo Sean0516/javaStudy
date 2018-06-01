@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Core2/Core2.iml" filepath="$PROJECT_DIR$/Core2/Core2.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaBase.iml" filepath="$PROJECT_DIR$/JavaBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NIO/NIO.iml" filepath="$PROJECT_DIR$/NIO/NIO.iml" />
       <module fileurl="file://$PROJECT_DIR$/StringStudy/StringStudy.iml" filepath="$PROJECT_DIR$/StringStudy/StringStudy.iml" />
     </modules>
   </component>

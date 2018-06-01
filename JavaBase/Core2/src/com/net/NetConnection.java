@@ -14,7 +14,11 @@ import java.util.Map;
  */
 public class NetConnection {
     public static void main(String[] args) throws IOException {
+
         URL url=new URL("https://www.baidu.com/");
+//        直接返回数据
+        InputStream inputStream = url.openStream();
+
         URLConnection connection= url.openConnection();
         Map<String, List<String>> headerFields = connection.getHeaderFields();
 //        InputStream inputStream = connection.getInputStream();

@@ -1,25 +1,28 @@
-package com.voicecyber;
+package com.voicecyber.tcp;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Sean on 2018/5/31.
  */
-public class TestServerSocket {
+public class TcpServerSocket {
     public static void getServerSocket(Integer port) throws IOException {
         ServerSocketChannel serverSocketChannel=ServerSocketChannel.open();
         serverSocketChannel.socket().bind(new InetSocketAddress(port));
-//        serverSocketChannel.configureBlocking(false);
+        SocketChannel socketChannel=null;
+        Executor executor= Executors.newCachedThreadPool();
         while (true){
-            SocketChannel socketChannel=serverSocketChannel.accept();
-            new SocketClient(socketChannel);
+            socketChannel =serverSocketChannel.accept();
+            executor.execute(new SocketClient(socketChannel));
         }
     }
 
     public static void main(String[] args) throws IOException {
-        TestServerSocket.getServerSocket(8888);
+        TcpServerSocket.getServerSocket(8888);
     }
 }

@@ -3,6 +3,7 @@ package com.io;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -45,69 +46,77 @@ public class IoStream {
         bufferedOutputStream.flush();
         bufferedOutputStream.close();
     }
+
     public static void writeFileByWriter(String fileName) throws IOException {
-        FileWriter fileWriter=new FileWriter(fileName,true);
-        BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+        FileWriter fileWriter = new FileWriter(fileName, true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.newLine();
         bufferedWriter.write("This is a test");
         bufferedWriter.flush();
         bufferedWriter.close();
     }
 
-    public static  void streamToReader(String fileName) throws IOException {
-        FileInputStream fileInputStream=new FileInputStream(fileName);
-        BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(fileInputStream,"UTF-8"));
+    public static void streamToReader(String fileName) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"));
         String str;
-        while ((str=bufferedReader.readLine())!=null){
+        while ((str = bufferedReader.readLine()) != null) {
             System.out.println(str);
         }
         fileInputStream.close();
         bufferedReader.close();
     }
+
     public static void writeTextWriter(String fileName) throws IOException {
-        FileWriter fileWriter=new FileWriter(fileName,true);
+        FileWriter fileWriter = new FileWriter(fileName, true);
 //        FileOutputStream fileOutputStream=new FileOutputStream(fileName);
-        PrintWriter printWriter=new PrintWriter(fileWriter,true);
+        PrintWriter printWriter = new PrintWriter(fileWriter, true);
         printWriter.println("1231");
         printWriter.close();
     }
-    public static  void readZipFile(String zipFileName) throws IOException {
-        ZipInputStream zipInputStream=new ZipInputStream(new FileInputStream(zipFileName));
+
+    public static void readZipFile(String zipFileName) throws IOException {
+        ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFileName));
         ZipEntry entry;
-        while ((entry=zipInputStream.getNextEntry())!=null){
+        while ((entry = zipInputStream.getNextEntry()) != null) {
             System.out.println(entry.getName());
             zipInputStream.closeEntry();
         }
         zipInputStream.close();
     }
-    public static void writeZipFile(String zipFileName,String[] fileNames) throws IOException {
 
-        ZipOutputStream zipOutputStream=new ZipOutputStream(new FileOutputStream(zipFileName));
+    public static void writeZipFile(String zipFileName, String[] fileNames) throws IOException {
+
+        ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
         for (String fileName : fileNames) {
-            ZipEntry zipEntry=new ZipEntry(fileName);
+            ZipEntry zipEntry = new ZipEntry(fileName);
             zipOutputStream.putNextEntry(zipEntry);
             zipOutputStream.closeEntry();
         }
         zipOutputStream.close();
     }
-    public static void writeObjectFile(String fileName,Object... objects) throws IOException {
-        ObjectOutputStream objectOutputStream=new ObjectOutputStream(new FileOutputStream(fileName));
-            objectOutputStream.writeObject(objects);
+
+    public static void writeObjectFile(String fileName, Object... objects) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
+        objectOutputStream.writeObject(objects);
+
         objectOutputStream.close();
     }
+
     public static void readObjectFile(String fileName) throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream=new ObjectInputStream(new FileInputStream(fileName));
-        Demo[] demos =(Demo[]) objectInputStream.readObject();
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
+        Demo[] demos = (Demo[]) objectInputStream.readObject();
         for (Demo demo : demos) {
             System.out.println(demo.toString());
         }
         objectInputStream.close();
     }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 //        Demo[] demos={new Demo("sean","14"),new Demo("master","22")};
 //        IoStream.writeObjectFile("D:\\object.dat",demos);
-        Path path= Paths.get("D:","work");
-        String str=path.toString();
+        Path path = Paths.get("D:", "work");
+        String str = path.toString();
         System.out.println(str);
 
     }

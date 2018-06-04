@@ -62,9 +62,10 @@ public class TcpServer {
     }
 
     public static void main(String[] args) throws IOException {
-        TcpServer tcpServer=new TcpServer();
-        tcpServer.initTcpServer(8888);
-        tcpServer.listenClient();
+//        TcpServer tcpServer=new TcpServer();
+//        tcpServer.initTcpServer(8888);
+//        tcpServer.listenClient();
+
     }
 
 }

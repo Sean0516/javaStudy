@@ -23,7 +23,7 @@ public class TestLambda {
         List<Long> list=new ArrayList<>();
         list.add(1L);
         list.add(22L);
-        list.add(3321l);
+        list.add(3321L);
 //        list.stream().filter((x)->x>23L).count();
 //        list.stream().reduce(addLong);
         Map<Boolean, List<Long>> collect = list.stream().collect(Collectors.partitioningBy(x -> x > 23L));

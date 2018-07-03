@@ -99,7 +99,6 @@ public class IoStream {
     public static void writeObjectFile(String fileName, Object... objects) throws IOException {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
         objectOutputStream.writeObject(objects);
-
         objectOutputStream.close();
     }
 
@@ -113,11 +112,6 @@ public class IoStream {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        Demo[] demos={new Demo("sean","14"),new Demo("master","22")};
-//        IoStream.writeObjectFile("D:\\object.dat",demos);
-        Path path = Paths.get("D:", "work");
-        String str = path.toString();
-        System.out.println(str);
 
     }
 }

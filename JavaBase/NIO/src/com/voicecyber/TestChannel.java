@@ -72,7 +72,8 @@ public class TestChannel {
     }
     public static  void selector() throws IOException {
         SocketChannel socketChannel=SocketChannel.open(new InetSocketAddress("192.136",8888));
-        socketChannel.configureBlocking(false);  // 设置为非阻塞模式 ，所以file channel 不能和selector一起使用
+        // 设置为非阻塞模式 ，所以file channel 不能和selector一起使用
+        socketChannel.configureBlocking(false);
         Selector selector=Selector.open();
         socketChannel.register(selector,SelectionKey.OP_READ);
         int select = selector.select();
@@ -81,7 +82,6 @@ public class TestChannel {
     }
 
     public static void main(String[] args) throws IOException {
-//        TestChannel.transferChannelToFileChannel("D:\\kafka.properties","D:\\test.properties");
         TestChannel.redaFileByChannel("D:\\kafka.properties");
 
 

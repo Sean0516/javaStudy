@@ -6,10 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="fileupload" />
+        <module name="ThirdPartyApi" />
         <module name="UDPTCP" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="fileupload" target="1.8" />
+      <module name="ThirdPartyApi" target="1.8" />
       <module name="UDPTCP" target="1.8" />
     </bytecodeTargetLevel>
   </component>

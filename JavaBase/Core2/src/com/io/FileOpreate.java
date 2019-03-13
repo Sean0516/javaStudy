@@ -28,7 +28,7 @@ public static void main(String[] args) throws IOException {
     lines.add("123");
     lines.add("132213");
 //    写文件  写行的集合
-    Files.write(path,lines);
+    Files.write(path,lines,StandardOpenOption.APPEND);
 //    写文件 写字符串
     Files.write(path,s.getBytes("UTF-8"));
 //    写文件 写字符串 追加

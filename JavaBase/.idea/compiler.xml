@@ -13,10 +13,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="fileupload" target="1.8" />
+      <module name="fileupload" target="1.5" />
       <module name="LogBack" target="1.8" />
       <module name="ThirdPartyApi" target="1.8" />
-      <module name="UDPTCP" target="1.8" />
+      <module name="UDPTCP" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/UDPTCP/pom.xml" />
         <option value="$PROJECT_DIR$/fileupload/pom.xml" />
         <option value="$PROJECT_DIR$/ThirdPartyApi/pom.xml" />
+        <option value="$PROJECT_DIR$/LogBack/pom.xml" />
       </list>
     </option>
   </component>

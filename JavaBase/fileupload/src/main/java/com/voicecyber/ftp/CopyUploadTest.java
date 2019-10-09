@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Set;
 
 /**
  * Created by Sean on 2018/12/17
@@ -12,15 +16,14 @@ import java.nio.file.Paths;
  */
 public class CopyUploadTest {
     public static void main(String[] args) throws IOException {
-//        File file = new File("//192.168.5.223/home/mli/test");
-//        System.out.println("1111");
-//        System.out.println(System.currentTimeMillis());
-//        if (!file.exists()) {
-//            System.out.println(System.currentTimeMillis());
-//            boolean mkdirs = file.mkdirs();
-//            System.out.println("result " + mkdirs);
-//        }
-//        System.out.println("end ");
+        File file = new File("//192.168.6.25/home/media/");
+        System.out.println("1111");
+        System.out.println(System.currentTimeMillis());
+        if (!file.exists()) {
+            Files.createDirectories(file.toPath());
+        }
+        System.out.println(System.currentTimeMillis());
+        System.out.println("end ");
     }
 
 }

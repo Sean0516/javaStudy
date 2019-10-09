@@ -24,8 +24,9 @@ public class MultimapTest {
         System.out.println(list);
 //        List<String> list1 = multimap.removeAll("name");
         multimap.replaceValues("test",Arrays.asList(a1));
-        System.out.println(multimap);
-        Collection<String> values = multimap.values();
-        System.out.println(values);
+        boolean remove = multimap.remove("test", "123");
+        System.out.println(remove);
+        System.out.println(multimap.size());
+
     }
 }

@@ -22,13 +22,13 @@ public class SFtpTest {
     public static void main(String[] args) throws SftpException {
         SFtpTest sFtpTest = new SFtpTest();
         Thread thread=new Thread(()->{
-            boolean root = sFtpTest.connect("192.168.6.5", 22, "root", "123456");
+            boolean root = sFtpTest.connect("ip", 22, "root", "123456");
             System.out.println("是否连接："+root);
             int i=0;
             while (channelSftp!=null&&channelSftp.isConnected()){
                 System.out.println("sftp is connected ");
                 try {
-                    InputStream inputStream = channelSftp.get("/media/infostore/src/500002201812180941500_rs.json");
+                    InputStream inputStream = channelSftp.get("");
                     Path path = Paths.get("D:\\test", "test"+i + ".json");
                     Files.copy(inputStream,path);
                     i++;

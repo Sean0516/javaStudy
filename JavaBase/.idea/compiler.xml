@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fileupload" />
         <module name="LogBack" />
         <module name="ThirdPartyApi" />
+        <module name="fileupload" />
         <module name="UDPTCP" />
       </profile>
     </annotationProcessing>
@@ -16,7 +16,7 @@
       <module name="fileupload" target="1.5" />
       <module name="LogBack" target="1.8" />
       <module name="ThirdPartyApi" target="1.8" />
-      <module name="UDPTCP" target="1.5" />
+      <module name="UDPTCP" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

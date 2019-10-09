@@ -1,13 +1,11 @@
 package com.voicecyber;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.nio.file.Files;
 
 /**
  * Created by Sean on 2018/5/31.
@@ -15,7 +13,7 @@ import java.nio.charset.CharsetDecoder;
 public class TestChannel {
     private static Charset charset = Charset.forName("UTF-8");
     private static CharsetDecoder decoder = charset.newDecoder();
-    public static void redaFileByChannel(String fileName) throws IOException {
+    public static void readFileByChannel(String fileName) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(fileName);
         FileChannel channel = fileInputStream.getChannel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
@@ -70,20 +68,23 @@ public class TestChannel {
         toChannel.close();
 
     }
-    public static  void selector() throws IOException {
-        SocketChannel socketChannel=SocketChannel.open(new InetSocketAddress("192.136",8888));
-        // 设置为非阻塞模式 ，所以file channel 不能和selector一起使用
-        socketChannel.configureBlocking(false);
-        Selector selector=Selector.open();
-        socketChannel.register(selector,SelectionKey.OP_READ);
-        int select = selector.select();
-
-
+    public static void writeFileByChannel(String fileName) throws IOException {
+        File file = new File(fileName);
+        if (!file.exists()){
+            file.createNewFile();
+        }
+        FileOutputStream outputStream = new FileOutputStream(file);
+        FileChannel channel = outputStream.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        String string = "hello test ";
+        buffer.put(string.getBytes());
+        //此处必须要调用buffer的flip方法
+        buffer.flip();
+        channel.write(buffer);
+        channel.close();
+        outputStream.close();
     }
-
     public static void main(String[] args) throws IOException {
-        TestChannel.redaFileByChannel("D:\\kafka.properties");
-
-
+        TestChannel.writeFileByChannel("D:\\kafka.properties");
     }
 }

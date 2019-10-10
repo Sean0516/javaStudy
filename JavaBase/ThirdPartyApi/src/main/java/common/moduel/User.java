@@ -2,6 +2,8 @@ package common.moduel;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.Objects;
+
 /**
  * Created by Sean on 2019/3/12
  *
@@ -50,4 +52,23 @@ public class User {
                 ", sex:'" + sex + '\'' +
                 '}';
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof User) {
+            User user = (User) obj;
+            boolean equals = user.getName().equals(name);
+            return equals;
+        }
+        return false;
+    }
+
 }

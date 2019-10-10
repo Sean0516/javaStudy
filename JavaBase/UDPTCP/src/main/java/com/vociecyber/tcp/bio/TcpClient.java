@@ -1,4 +1,4 @@
-package com.vociecyber.tcp;
+package com.vociecyber.tcp.bio;
 
 import java.io.*;
 import java.net.Socket;
@@ -10,6 +10,7 @@ public class TcpClient {
     public static void createTcpClient(String url,int port) throws IOException {
         String serverMsg="";
         Socket clientSocket=new Socket(url,port);
+        clientSocket.setSoTimeout(4000);
         BufferedReader userInput=new BufferedReader(new InputStreamReader(System.in));
         BufferedReader serverInput=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         PrintStream clientOut=new PrintStream(clientSocket.getOutputStream());

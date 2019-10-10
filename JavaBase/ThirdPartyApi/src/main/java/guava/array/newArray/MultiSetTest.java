@@ -26,11 +26,23 @@ public class MultiSetTest {
 //        multiset.setCount("my", 3);
 ////        放回集合元素的总个数（包括重复元素
 //        System.out.println(multiset.size());
-        TreeMultiset<User> multisetTree = TreeMultiset.create((Comparator<User>) (o1, o2) -> ComparisonChain.start().compare(o1.getAge(), o2.getAge()).result());
-        multisetTree.add(new User("sean",122,"334"),2);
-        multisetTree.add(new User("st",22,"男"));
-        multisetTree.add(new User("test",4,"女"),4);
-        System.out.println(multisetTree.count(new User("sean", 12, "334")));
-        System.out.println(multisetTree.size());
+//        TreeMultiset<User> multisetTree = TreeMultiset.create((Comparator<User>) (o1, o2) -> ComparisonChain.start().compare(o1.getAge(), o2.getAge()).result());
+//        multisetTree.add(new User("sean",122,"334"),2);
+//        multisetTree.add(new User("st",22,"男"));
+//        multisetTree.add(new User("test",4,"女"),4);
+//        System.out.println(multisetTree.count(new User("sean", 12, "334")));
+//        System.out.println(multisetTree.size());
+        ConcurrentHashMultiset concurrentHashMultiset=ConcurrentHashMultiset.create();
+        User sean = new User("sean", 122, "334");
+        User user = new User("st", 22, "男");
+        User sean2 = new User("sean", 122, "334");
+        User user1 = new User("test", 4, "女");
+        concurrentHashMultiset.add(sean);
+        concurrentHashMultiset.add(user);
+        concurrentHashMultiset.add(user1);
+        concurrentHashMultiset.add(sean2);
+        System.out.println(concurrentHashMultiset.count(sean));
+
+
     }
 }

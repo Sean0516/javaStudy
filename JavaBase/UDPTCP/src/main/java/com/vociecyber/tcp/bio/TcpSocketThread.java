@@ -1,4 +1,4 @@
-package com.vociecyber.tcp;
+package com.vociecyber.tcp.bio;
 
 import java.io.BufferedReader;
 import java.io.IOException;

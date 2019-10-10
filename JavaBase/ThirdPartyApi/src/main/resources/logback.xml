@@ -6,13 +6,9 @@
         <encoder>
             <pattern>%d [%t] %p %logger - %m%n</pattern>
         </encoder>
-        <filter class="com.logback.CustomFilter">
-
-        </filter>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
-
     </appender>
 
     <appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">

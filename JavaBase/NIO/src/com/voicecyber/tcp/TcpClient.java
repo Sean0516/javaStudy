@@ -17,6 +17,7 @@ public class TcpClient {
     private TcpServer tcpServer=new TcpServer();
     public void initClient(String ip,int port) throws IOException {
         SocketChannel socketChannel=SocketChannel.open();
+//        设置为非阻塞模式，立刻放回false ，表示连接正在建立
         socketChannel.configureBlocking(false);
         this.selector=Selector.open();
         socketChannel.connect(new InetSocketAddress(ip,port));

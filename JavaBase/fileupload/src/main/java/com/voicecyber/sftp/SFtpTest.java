@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 /**
@@ -19,34 +20,22 @@ public class SFtpTest {
     public static ChannelSftp channelSftp = null;
     private Channel channel = null;
 
-    public static void main(String[] args) throws SftpException {
+    public static void main(String[] args) {
         SFtpTest sFtpTest = new SFtpTest();
-        Thread thread=new Thread(()->{
-            boolean root = sFtpTest.connect("ip", 22, "root", "123456");
-            System.out.println("是否连接："+root);
-            int i=0;
-            while (channelSftp!=null&&channelSftp.isConnected()){
-                System.out.println("sftp is connected ");
-                try {
-                    InputStream inputStream = channelSftp.get("");
-                    Path path = Paths.get("D:\\test", "test"+i + ".json");
-                    Files.copy(inputStream,path);
-                    i++;
-                } catch (SftpException e) {
-                    if ( e.getCause()instanceof IOException){
-                        System.out.println("io"+e.getCause().toString());
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        boolean root = sFtpTest.connect("192.168.6.25", 22, "root", "123456");
+        System.out.println("是否连接：" + root);
+        int i = 0;
+        System.out.println("sftp is connected ");
+        if (root) {
+            try {
+                System.out.println(LocalDateTime.now().toString());
+                sFtpTest.uploadFile("D:\\开发软件\\ideaIU-2019.1.1-no-jbr.tar.gz", "test/test2/ideaIU-2019.1.1-no-jbr.tar.gz", "/test/test2");
+                System.out.println(LocalDateTime.now().toString());
+            } finally {
+                sFtpTest.disconnect();
             }
-        });
-        thread.start();
+        }
+
         //            boolean dirExist = sFtpTest.isDirExist("/test1/");
 //            System.out.println(dirExist);
 //            if (!dirExist) {
@@ -84,28 +73,28 @@ public class SFtpTest {
         return true;
     }
 
-    public boolean uploadFile(String filePath, String remotePath,String remoteDir) {
+    public boolean uploadFile(String filePath, String remotePath, String remoteDir) {
         createDir(remoteDir);
         InputStream in = null;
-            try {
-                in = new FileInputStream(filePath);
-                channelSftp.put(in,remotePath, ChannelSftp.OVERWRITE);
-                int chmodInt = Integer.parseInt("777", 8);
-                channelSftp.chmod(chmodInt, remotePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (SftpException e) {
-                e.printStackTrace();
-            } finally {
-                if (null!=in){
-                    try {
-                        in.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
+        try {
+            in = new FileInputStream(filePath);
+            channelSftp.put(in, remotePath, ChannelSftp.OVERWRITE);
+            int chmodInt = Integer.parseInt("777", 8);
+            channelSftp.chmod(chmodInt, remotePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SftpException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != in) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
             }
+        }
 
 
         return true;

@@ -20,9 +20,26 @@ import java.security.NoSuchAlgorithmException;
  * @author Sean
  */
 public class HttpClientPoolUtil {
-    PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = null;
+    private static PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = null;
+    private static CloseableHttpClient httpClient = null;
+    private static Object syncLock = new Object();
 
-    {
+    private HttpClientPoolUtil() {
+
+    }
+
+    public static CloseableHttpClient getHttpClient() {
+        if (httpClient == null) {
+            synchronized (syncLock) {
+                if (httpClient == null) {
+                    httpClient = createHttpClient();
+                }
+            }
+        }
+        return httpClient;
+    }
+
+    public static CloseableHttpClient createHttpClient() {
         LayeredConnectionSocketFactory socketFactory = null;
         try {
             socketFactory = new SSLConnectionSocketFactory(SSLContext.getDefault());
@@ -36,13 +53,12 @@ public class HttpClientPoolUtil {
         poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
         poolingHttpClientConnectionManager.setMaxTotal(200);
         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
-    }
 
-    public CloseableHttpClient getHttpClient() {
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(poolingHttpClientConnectionManager)
                 .setDefaultRequestConfig(RequestConfig.custom().setConnectionRequestTimeout(2000).setConnectTimeout(2000).build())
                 .build();
         return httpClient;
+
     }
 }

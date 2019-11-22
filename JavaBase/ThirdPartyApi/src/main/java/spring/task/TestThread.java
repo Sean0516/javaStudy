@@ -19,7 +19,7 @@ public class TestThread implements Runnable {
                 System.out.println("当前时间大于定时任务时间，线程停止");
                 break;
             }else {
-                System.out.println("TestThread run " + new Date());
+                System.out.println("TimerThread run " + new Date());
                 try {
                     Thread.sleep(10*1000);
                 } catch (InterruptedException e) {

@@ -15,7 +15,7 @@ import java.util.List;
 public class StringTest {
     public static void main(String[] args) {
         Joiner joiner = Joiner.on(",").skipNulls();
-        String[] str = {"232", "test", null, "334"};
+        String[] str = {"232", "timer", null, "334"};
         String join = joiner.join(str);
         UserBo[] userBos = {new UserBo("sean", "nan"), new UserBo("teest", "nv"), null};
         Joiner joiner1 = Joiner.on(",").useForNull(new UserBo("mytest", "nv").toString());

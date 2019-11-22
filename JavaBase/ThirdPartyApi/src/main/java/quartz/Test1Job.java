@@ -26,7 +26,7 @@ public class Test1Job implements Job {
 //                try {
 //                    System.out.println("开始 put 数据 "+new Date() );
 //                    for (int i = 0; i <100 ; i++) {
-//                        strings.put("test" + UUID.randomUUID());
+//                        strings.put("timer" + UUID.randomUUID());
 //                    }
         try {
             Thread.sleep(10 * 1000);

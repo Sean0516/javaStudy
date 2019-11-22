@@ -6,6 +6,8 @@ import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by Sean on 2018/5/31.
@@ -76,7 +78,7 @@ public class TestChannel {
         FileOutputStream outputStream = new FileOutputStream(file);
         FileChannel channel = outputStream.getChannel();
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        String string = "hello test ";
+        String string = "hello timer ";
         buffer.put(string.getBytes());
         //此处必须要调用buffer的flip方法
         buffer.flip();

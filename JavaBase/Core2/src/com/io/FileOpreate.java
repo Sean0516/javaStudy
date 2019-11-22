@@ -23,7 +23,7 @@ public static void main(String[] args) throws IOException {
     String str = new String(bytes ,"UTF-8");
 //    将文件转化为 行序列
     List<String> stringList=Files.readAllLines(path);
-    String s="test sean12";
+    String s="timer sean12";
     List<String> lines=new ArrayList<>();
     lines.add("123");
     lines.add("132213");

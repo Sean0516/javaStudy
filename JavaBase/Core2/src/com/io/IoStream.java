@@ -51,7 +51,7 @@ public class IoStream {
         FileWriter fileWriter = new FileWriter(fileName, true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.newLine();
-        bufferedWriter.write("This is a test");
+        bufferedWriter.write("This is a timer");
         bufferedWriter.flush();
         bufferedWriter.close();
     }

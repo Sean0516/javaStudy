@@ -5,7 +5,7 @@ package com.innerclass;
  */
 public class OuterClass {
 //    内部类访问外部类对象状态
-    private  String  str="test";
+    private  String  str="timer";
 //        局部内部类
      public void test(){
           String name="Sean";

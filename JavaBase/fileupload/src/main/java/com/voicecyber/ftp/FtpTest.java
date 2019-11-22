@@ -31,18 +31,18 @@ public class FtpTest {
         if (sean) {
             InputStream inputStream = ftpClient.retrieveFileStream("\\000\\20190528\\000\\50000020190528000658.mp4");
             if (null!=inputStream){
-                Files.copy(inputStream,Paths.get("D:\\test.mp4"));
+                Files.copy(inputStream,Paths.get("D:\\timer.mp4"));
             }
 
         }
         ftpClient.disconnect();
     }
 
-//        boolean b = ftpClient.changeWorkingDirectory("/test/test1/test2");
+//        boolean b = ftpClient.changeWorkingDirectory("/timer/test1/test2");
 //        if (!b){
-//            createRemoteDir("/test/test1/test2/");
+//            createRemoteDir("/timer/test1/test2/");
 //        }
-//        ftpClient.storeFile("/test/test1/test2/test.txt",new FileInputStream(new File("D:\\test.txt")));
+//        ftpClient.storeFile("/timer/test1/test2/timer.txt",new FileInputStream(new File("D:\\timer.txt")));
 
 
     public static boolean connect(String ip, Integer port, String userName, String passWord) {
@@ -64,11 +64,11 @@ public class FtpTest {
                 ftpClient.setControlEncoding(localCharset);
                 ftpClient.enterLocalPassiveMode();
                 ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-//                boolean b = ftpClient.changeWorkingDirectory("/test/test1/");
+//                boolean b = ftpClient.changeWorkingDirectory("/timer/test1/");
 //                if (!b){
-//                    createRemoteDir("/test/test1/");
+//                    createRemoteDir("/timer/test1/");
 //                }
-//                ftpClient.storeFile("/test/test1/test.txt",new FileInputStream(new File("D:\\test.txt")));
+//                ftpClient.storeFile("/timer/test1/timer.txt",new FileInputStream(new File("D:\\timer.txt")));
             }
         } catch (IOException e) {
             result = false;

@@ -22,13 +22,13 @@ public class Test {
         String s = JSON.toJSONString(user);
         System.out.println(s);
         byte[] bytes = JSON.toJSONBytes(user);
-        FileOutputStream fileOutputStream=new FileOutputStream("D:\\test.json");
+        FileOutputStream fileOutputStream=new FileOutputStream("D:\\timer.json");
         JSON.writeJSONString( fileOutputStream,user);
         User user1 = JSON.parseObject(s, User.class);
         User user2 = JSON.parseObject(bytes, User.class);
         System.out.println(user2);
         JSONObject jsonObject = JSON.parseObject(s);
-        User user3 = JSON.parseObject(new FileInputStream("D:\\test.json"), Charset.defaultCharset(), User.class);
+        User user3 = JSON.parseObject(new FileInputStream("D:\\timer.json"), Charset.defaultCharset(), User.class);
         System.out.println(user3);
 
     }

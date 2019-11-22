@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class JSONFieldTest {
     public static void main(String[] args) {
-        Student student=new Student("Sean",new Date(),"男",22,"test");
+        Student student=new Student("Sean",new Date(),"男",22,"timer");
         String s = JSON.toJSONString(student);
         System.out.println(s);
 

@@ -48,7 +48,7 @@ public class KafkaCousmerFactory {
 
     public static void main(String[] args) {
         KafkaCousmerFactory kafkaCousmerFactory=new KafkaCousmerFactory();
-        KafkaConsumer<String, String> kafkaConsumer = kafkaCousmerFactory.initConsumer("192.168.4.104:9092", "test", true,"voice-smdr");
+        KafkaConsumer<String, String> kafkaConsumer = kafkaCousmerFactory.initConsumer("192.168.4.104:9092", "timer", true,"voice-smdr");
 
         while (true){
             ConsumerRecords<String, String> poll = kafkaConsumer.poll(10);

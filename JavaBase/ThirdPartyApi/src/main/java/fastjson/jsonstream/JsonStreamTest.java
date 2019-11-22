@@ -20,7 +20,7 @@ public class JsonStreamTest {
 //        JSONWriter writer=new JSONWriter(new FileWriter("D:\\streamTest.json"));
 //        writer.startArray();
 //        for (int i = 0; i < 1000; i++) {
-//            User user=new User("test",i,"男");
+//            User user=new User("timer",i,"男");
 //            writer.writeValue(user);
 //        }
 //        writer.endArray();

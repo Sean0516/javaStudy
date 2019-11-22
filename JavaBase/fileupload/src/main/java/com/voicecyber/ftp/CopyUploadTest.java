@@ -16,14 +16,16 @@ import java.util.Set;
  */
 public class CopyUploadTest {
     public static void main(String[] args) throws IOException {
-        File file = new File("//192.168.6.25/home/media/");
-        System.out.println("1111");
-        System.out.println(System.currentTimeMillis());
-        if (!file.exists()) {
-            Files.createDirectories(file.toPath());
-        }
-        System.out.println(System.currentTimeMillis());
-        System.out.println("end ");
+        File file = new File("//192.168.6.222/share/media/infostore/src/500002201908271452460_rs.json");
+        Files.copy(file.toPath(), Paths.get("D:\\timer.json"));
+        System.out.println("copy end ");
+//        if (file.exists()){
+//            System.out.println(file.getAbsolutePath());
+//        }
+//        String localFile="C:\\media\\000\\20191017\\000\\50000020191017105759.mp3";
+//        String ftpPath = localFile.substring(localFile.lastIndexOf("media") + 5);
+//        System.out.println(ftpPath);
+
     }
 
 }

@@ -19,7 +19,7 @@ public class StringMethod {
         str1 = str.concat("ssd");
 
 //contains(CharSequence s)  当且仅当此字符串包含指定的char值序列时才返回true
-        result = str.contains("test");
+        result = str.contains("timer");
 
 //        endsWith(String suffix)   测试此字符串是否以指定的后缀结尾
         result = str.endsWith("ss");
@@ -76,7 +76,7 @@ public class StringMethod {
         stringBuffer.capacity();
 
 //        insert(int offset, boolean b)        在此序列中插入参数
-        stringBuffer.insert(0,"test");
+        stringBuffer.insert(0,"timer");
 
 //        replace(int start, int end, String str)
         stringBuffer.replace(1,2,"xs");

@@ -18,7 +18,7 @@ public class Test {
     public static void main(String[] args) throws UnknownHostException, SocketException {
         List<Demo1> demo1List=new ArrayList<>();
         demo1List.add(new Demo1("192.168.6.80","sss"));
-        demo1List.add(new Demo1("192.168.6.78","test"));
+        demo1List.add(new Demo1("192.168.6.78","timer"));
         List<String>    ipList= new ArrayList<>();
         try{
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();

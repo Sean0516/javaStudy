@@ -16,7 +16,7 @@ public class MultiSetTest {
     public static void main(String[] args) {
 //        HashMultiset<String> multiset = HashMultiset.create();
 //        multiset.add("sean");
-//        multiset.add("test", 3);
+//        multiset.add("timer", 3);
 //        multiset.add("master");
 ////        给定元素在MultiSet的计数
 //        System.out.println(multiset.count("sean"));
@@ -29,14 +29,14 @@ public class MultiSetTest {
 //        TreeMultiset<User> multisetTree = TreeMultiset.create((Comparator<User>) (o1, o2) -> ComparisonChain.start().compare(o1.getAge(), o2.getAge()).result());
 //        multisetTree.add(new User("sean",122,"334"),2);
 //        multisetTree.add(new User("st",22,"男"));
-//        multisetTree.add(new User("test",4,"女"),4);
+//        multisetTree.add(new User("timer",4,"女"),4);
 //        System.out.println(multisetTree.count(new User("sean", 12, "334")));
 //        System.out.println(multisetTree.size());
         ConcurrentHashMultiset concurrentHashMultiset=ConcurrentHashMultiset.create();
         User sean = new User("sean", 122, "334");
         User user = new User("st", 22, "男");
         User sean2 = new User("sean", 122, "334");
-        User user1 = new User("test", 4, "女");
+        User user1 = new User("timer", 4, "女");
         concurrentHashMultiset.add(sean);
         concurrentHashMultiset.add(user);
         concurrentHashMultiset.add(user1);

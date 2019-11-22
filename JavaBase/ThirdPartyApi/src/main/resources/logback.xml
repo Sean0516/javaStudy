@@ -31,8 +31,8 @@
     </appender>
 
     <logger name="com.logback" level="DEBUG"/>
-
-    <root level="INFO">
+    <logger name="com.apache.sshd" level="DEBUG"/>
+    <root level="DEBUG">
         <appender-ref ref="Console"/>
         <appender-ref ref="LogFile"/>
     </root>

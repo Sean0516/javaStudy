@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Created by Sean on 2018/5/30.
  */
 public class TestNative {
-//    public static native void test();
+//    public static native void timer();
 //    static {
 //        System.loadLibrary("TestNative");
 //    }

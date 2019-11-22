@@ -29,7 +29,7 @@ public class SFtpTest {
         if (root) {
             try {
                 System.out.println(LocalDateTime.now().toString());
-                sFtpTest.uploadFile("D:\\开发软件\\ideaIU-2019.1.1-no-jbr.tar.gz", "test/test2/ideaIU-2019.1.1-no-jbr.tar.gz", "/test/test2");
+                sFtpTest.uploadFile("D:\\开发软件\\ideaIU-2019.1.1-no-jbr.tar.gz", "timer/test2/ideaIU-2019.1.1-no-jbr.tar.gz", "/timer/test2");
                 System.out.println(LocalDateTime.now().toString());
             } finally {
                 sFtpTest.disconnect();
@@ -40,7 +40,7 @@ public class SFtpTest {
 //            System.out.println(dirExist);
 //            if (!dirExist) {
 //            }
-//            sFtpTest.uploadFile("c:/media/infostore/test/temp/500002201812141027220_0.wav","media/infostore/test/temp/500002201812141027220_0.wav");
+//            sFtpTest.uploadFile("c:/media/infostore/timer/temp/500002201812141027220_0.wav","media/infostore/timer/temp/500002201812141027220_0.wav");
 
     }
 

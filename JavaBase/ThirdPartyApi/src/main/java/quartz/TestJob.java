@@ -18,19 +18,17 @@ public class TestJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         System.out.println("start TestJob");
-        TestUtil testUtil = (TestUtil) jobExecutionContext.getJobDetail().getJobDataMap().get("util");
-        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
+//        TestUtil testUtil = (TestUtil) jobExecutionContext.getJobDetail().getJobDataMap().get("util");
+//        String name = jobExecutionContext.getJobDetail().getJobDataMap().getString("name");
 //        LinkedBlockingQueue<String> uploadPathQueue = (LinkedBlockingQueue<String>) jobExecutionContext.getJobDetail().getJobDataMap().get("uploadPathQueue");
         while (true) {
+            System.out.println("线程继续");
             LocalDate localDate=LocalDate.now();
-            LocalDateTime localDateTime = localDate.atTime(10, 28, 0);
+            LocalDateTime localDateTime = localDate.atTime(12, 02, 0);
             if (localDateTime.isBefore(LocalDateTime.now())){
                 System.out.println("当前时间大于定时任务时间，线程停止");
                 break;
             }else {
-                testUtil.test();
-                //                String take = uploadPathQueue.take();
-                System.out.println(name + "获取数据从 uploadPathQueue  中  " );
                 try {
                     Thread.sleep(10*1000);
                 } catch (InterruptedException e) {
@@ -40,6 +38,7 @@ public class TestJob implements Job {
             }
 
         }
+        System.out.println("线程停止");
     }
 
 

@@ -52,10 +52,14 @@ public class Main {
 //        Trigger trigger2 = TriggerBuilder.newTrigger()
 //                .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(10).repeatForever())
 //                .build();
-        DailyTimeIntervalTrigger trigger2 = TriggerBuilder.newTrigger().withSchedule(DailyTimeIntervalScheduleBuilder.
-                dailyTimeIntervalSchedule()
-                .startingDailyAt(new TimeOfDay(8, 40, 0)).endingDailyAt(new TimeOfDay(8, 50, 0)).withIntervalInSeconds(10).withMisfireHandlingInstructionDoNothing()).build();
-
+//        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+//        JobDetail test1 = JobBuilder.newJob(TestJob.class)
+//                .build();
+//        DailyTimeIntervalTrigger trigger2 = TriggerBuilder.newTrigger().withSchedule(DailyTimeIntervalScheduleBuilder.dailyTimeIntervalSchedule()
+//                .startingDailyAt(new TimeOfDay(12, 00, 50))
+//        ).build();
+//        scheduler.scheduleJob(test1,trigger2);
+//        scheduler.start();
 
     }
 }

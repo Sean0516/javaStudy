@@ -3,6 +3,7 @@ package guava.array.immutablearray;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class ImmutableArrayTest {
     public static final ImmutableSet<String> array = ImmutableSet.of("123", "232", "32", "3223");
-    private static String[] str = {"ss", "sean", "test"};
+    private static String[] str = {"ss", "sean", "timer"};
     public static final ImmutableSet<String> array1 = ImmutableSet.copyOf(str);
 
     public static void main(String[] args) {

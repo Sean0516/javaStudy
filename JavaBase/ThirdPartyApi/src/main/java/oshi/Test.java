@@ -10,6 +10,7 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.FormatUtil;
+import oshi.util.Util;
 
 /**
  * @author sean
@@ -26,6 +27,7 @@ public class Test {
         System.out.println(processor.getName());
 
         long[] systemCpuLoadTicks = processor.getSystemCpuLoadTicks();
+        Util.sleep(1000);
         double systemCpuLoadBetweenTicks = processor.getSystemCpuLoadBetweenTicks(systemCpuLoadTicks);
         double v = systemCpuLoadBetweenTicks * 100;
         System.out.println(Math.rint(v));

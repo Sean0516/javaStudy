@@ -2,8 +2,10 @@ package guava.string;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import common.moduel.UserBo;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -22,7 +24,6 @@ public class StringTest {
         String join1 = joiner1.join(userBos);
         List<String> list = Splitter.on(",").omitEmptyStrings().trimResults().splitToList(",,ss,ss,2w,sd,,");
         System.out.println(CharMatcher.digit().replaceFrom("mima is 12345621", "*"));
-
 
     }
 }

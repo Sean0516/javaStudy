@@ -75,6 +75,14 @@ public class HttpClientUtil {
         String execute = HttpClientPoolUtil.getHttpClient().execute(httpPost, responseHandler());
         return execute;
     }
+    public void htttPostMediaFile(String url ,String filePath) throws IOException {
+        HttpPost httpPost = new HttpPost(url);
+        HttpEntity entity = MultipartEntityBuilder.create()
+                .addPart("file", new FileBody(new File(filePath)))
+                .build();
+        httpPost.setEntity(entity);
+        String execute = HttpClientPoolUtil.getHttpClient().execute(httpPost, responseHandler());
+    }
 
 // put  和delete 方法类似 。
 

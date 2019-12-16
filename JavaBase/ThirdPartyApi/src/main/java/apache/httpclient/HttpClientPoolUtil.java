@@ -9,6 +9,7 @@ import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
 import javax.net.ssl.SSLContext;
@@ -57,6 +58,8 @@ public class HttpClientPoolUtil {
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(poolingHttpClientConnectionManager)
                 .setDefaultRequestConfig(RequestConfig.custom().setConnectionRequestTimeout(2000).setConnectTimeout(2000).build())
+//                自定义重定向配置，也可以在responseHandler 中进行控制
+                .setRedirectStrategy(new LaxRedirectStrategy())
                 .build();
         return httpClient;
 

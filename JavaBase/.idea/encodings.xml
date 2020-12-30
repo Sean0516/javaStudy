@@ -2,9 +2,15 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/LogBack" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/LogBack/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/LogBack/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ThirdPartyApi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ThirdPartyApi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ThirdPartyApi/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UDPTCP" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UDPTCP/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fileupload" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fileupload/src/main/java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

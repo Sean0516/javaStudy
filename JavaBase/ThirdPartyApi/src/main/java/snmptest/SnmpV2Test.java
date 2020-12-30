@@ -20,7 +20,7 @@ public class SnmpV2Test {
         Snmp snmp = null;
         TransportMapping<UdpAddress> transport = null;
         try {
-            Address address = GenericAddress.parse("udp:192.168.6.25/162");
+            Address address = GenericAddress.parse("udp:192.168.1.133/161");
             transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);
             transport.listen();
@@ -33,6 +33,7 @@ public class SnmpV2Test {
             pdu.setType(PDU.TRAP);
             pdu.add(new VariableBinding(new OID("1.3.6.1.2.1.1.5.0"),new OctetString("hello")));
 //            ResponseListener listener = new ResponseListener() {
+//                @Override
 //                public void onResponse(ResponseEvent event) {
 //                    ((Snmp) event.getSource()).cancel(event.getRequest(), this);
 //                    PDU response = event.getResponse();
@@ -42,8 +43,11 @@ public class SnmpV2Test {
 //                        System.out.println("Received response " +response);
 //                    }
 //                }
-//            };null, listener
-            snmp.send(pdu, communityTarget);
+//            };
+            ResponseEvent send = snmp.send(pdu, communityTarget);
+            if (null!=send&&send.getResponse()!=null){
+                System.out.println(send.getResponse());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

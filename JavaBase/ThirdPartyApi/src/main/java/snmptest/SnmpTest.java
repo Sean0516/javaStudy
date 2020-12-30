@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 public class SnmpTest {
     public static void main(String[] args) throws IOException {
-        Address address = GenericAddress.parse("udp:192.168.6.25/162");
+        Address address = GenericAddress.parse("udp:192.168.12.205/162");
         TransportMapping<UdpAddress> transport = new DefaultUdpTransportMapping();
         Snmp snmp = new Snmp(transport);
         transport.listen();
@@ -31,25 +31,25 @@ public class SnmpTest {
         target.setRetries(2);
         target.setTimeout(5000);
         byte[] localEngineID = MPv3.createLocalEngineID();
-        String engineId=new String(localEngineID);
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(
                 localEngineID), 500);
         SecurityModels secModels = SecurityModels.getInstance();
         if (snmp.getUSM() == null) {
             secModels.addSecurityModel(usm);
         }
-        snmp.getUSM().addUser(new OctetString("sean"),new UsmUser(new OctetString("sean"),AuthMD5.ID,new OctetString("duplicall"),PrivDES.ID,new OctetString("duplicall")));
-        target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
+        UsmUser user = new UsmUser(
+                new OctetString("CLog"), AuthMD5.ID,new OctetString("dupall"),null, null);
+
+        snmp.getUSM().addUser(new OctetString("CLog"), user);
+        target.setSecurityLevel(SecurityLevel.AUTH_NOPRIV);
         target.setAddress(address);
-        target.setSecurityName(new OctetString("sean"));
+        target.setSecurityName(new OctetString("CLog"));
         ScopedPDU pdu = new ScopedPDU();
         pdu.setType(PDU.TRAP);
-        VariableBinding v = new VariableBinding();
-        v.setOid(new OID(".1.3.6.1.2.1.1.5.0.2.2"));
-        v.setVariable(new OctetString("abcsdsas"));
+        VariableBinding v = new VariableBinding(new OID("1.3.6.1.4.1.8099.10.1"),new OctetString("demo user"));
         pdu.add(v);
         ResponseEvent send = snmp.send(pdu, target);
-        if (null!=send&&send.getResponse()!=null){
+        if (null != send && send.getResponse() != null) {
             System.out.println(send.getResponse());
         }
         snmp.close();

@@ -1,5 +1,7 @@
 package snmptest;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.checkerframework.checker.units.qual.C;
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
@@ -20,7 +22,7 @@ public class SnmpV2Test {
         Snmp snmp = null;
         TransportMapping<UdpAddress> transport = null;
         try {
-            Address address = GenericAddress.parse("udp:192.168.1.133/161");
+            Address address = GenericAddress.parse("udp:192.168.12.201/161");
             transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);
             transport.listen();
@@ -31,23 +33,48 @@ public class SnmpV2Test {
             communityTarget.setTimeout(10000);
             PDU pdu = new PDU();
             pdu.setType(PDU.TRAP);
-            pdu.add(new VariableBinding(new OID("1.3.6.1.2.1.1.5.0"),new OctetString("hello")));
-//            ResponseListener listener = new ResponseListener() {
-//                @Override
-//                public void onResponse(ResponseEvent event) {
-//                    ((Snmp) event.getSource()).cancel(event.getRequest(), this);
-//                    PDU response = event.getResponse();
-//                    if (response == null) {
-//                        System.out.println("connect time out");
-//                    } else {
-//                        System.out.println("Received response " +response);
-//                    }
-//                }
-//            };
-            ResponseEvent send = snmp.send(pdu, communityTarget);
-            if (null!=send&&send.getResponse()!=null){
-                System.out.println(send.getResponse());
-            }
+            JSONObject object=new JSONObject();
+            object.put("ip","127.0.0.1");
+            object.put("used",20);
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.11.1"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+
+            object.put("used",40);
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.clear();
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.11.2"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+
+            object.remove("used");
+            object.put("left",64);
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.clear();
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.11.3"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+            pdu.clear();
+            object.remove("left");
+            object.put("licenseServer","192.168.0.1");
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.15.1"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+            pdu.clear();
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.15.2"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+            pdu.clear();
+
+            object.remove("licenseServer");
+            object.put("num",2);
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.15.3"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+            pdu.clear();
+
+            object.put("num",100);
+            object.put("timestamp",System.currentTimeMillis());
+            pdu.add(new VariableBinding(new OID("1.3.6.1.4.1.8099.15.4"),new OctetString(JSON.toJSONString(object))));
+            snmp.send(pdu, communityTarget);
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

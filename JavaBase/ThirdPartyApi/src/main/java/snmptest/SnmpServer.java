@@ -46,7 +46,7 @@ public class SnmpServer implements CommandResponder {
             USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(MPv3
                     .createLocalEngineID()), 0);
             SecurityModels.getInstance().addSecurityModel(usm);
-            UsmUser usmUser = new UsmUser(new OctetString("CLog"), null, null, null, null);
+            UsmUser usmUser = new UsmUser(new OctetString("CLog"), AuthMD5.ID, new OctetString("duplicall"), PrivDES.ID, new OctetString("duplicall"));
             UsmUserEntry usmUserEntry = new UsmUserEntry(new OctetString("CLog"), usmUser);
             snmp.getUSM().getUserTable().addUser(usmUserEntry);
             snmp.listen();
@@ -55,40 +55,16 @@ public class SnmpServer implements CommandResponder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public void processPdu(CommandResponderEvent respEvnt) {
         if (respEvnt != null && respEvnt.getPDU() != null) {
-            PDU pdu = respEvnt.getPDU();
-            System.out.println(respEvnt.getPDU().toString());
-            if (pdu.getType() == PDU.GET) {
-                System.out.println("get GET msg ,response msg to client ");
-                pdu.setType(PDU.RESPONSE);
-                System.out.println("security level " + respEvnt.getSecurityLevel() + "security name " + new String(respEvnt.getSecurityName(), StandardCharsets.UTF_8));
-                System.out.println("oid "+ pdu.get(0).getOid().toDottedString());
-                pdu.get(0).setVariable(new OctetString("hello client" ));
-                StatusInformation statusInformation = new StatusInformation();
-                StateReference stateReference = respEvnt.getStateReference();
-                try {
-                    respEvnt.getMessageDispatcher().returnResponsePdu(
-
-                            respEvnt.getMessageProcessingModel(),
-
-                            respEvnt.getSecurityModel(), respEvnt.getSecurityName(),
-
-                            respEvnt.getSecurityLevel(), pdu,
-
-                            respEvnt.getMaxSizeResponsePDU(), stateReference,
-
-                            statusInformation);
-                } catch (MessageException e) {
-                    e.printStackTrace();
-                }
+            Vector<VariableBinding> recVBs = (Vector<VariableBinding>) respEvnt.getPDU().getVariableBindings();
+            for (int i = 0; i < recVBs.size(); i++) {
+                VariableBinding recVB = recVBs.elementAt(i);
+                System.out.println(recVB.getOid() + " : " + recVB.getVariable());
             }
-
         }
     }
 
